@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Ruby client for the PolyLingo translation API"
   spec.description = "Ruby client for the PolyLingo translation API (https://usepolylingo.com)."
-  spec.homepage = "https://github.com/UsePolyLingo/polyling-ruby"
+  spec.homepage = "https://github.com/UsePolyLingo/polylingo-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.7"
 

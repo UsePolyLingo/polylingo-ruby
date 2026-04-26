@@ -67,7 +67,7 @@ All time values are in **seconds** (Ruby convention):
 
 ## Repository
 
-[github.com/UsePolyLingo/polyling-ruby](https://github.com/UsePolyLingo/polyling-ruby)
+[github.com/UsePolyLingo/polylingo-ruby](https://github.com/UsePolyLingo/polylingo-ruby)
 
 ## License
 
