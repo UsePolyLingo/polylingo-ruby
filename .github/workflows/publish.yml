@@ -1,16 +1,20 @@
 name: Publish gem
 
+# Tag push should trigger a run; workflow_dispatch lets you publish from Actions UI
+# if tag events are blocked or missed. release: published covers "Publish release" flow.
 on:
   push:
     tags:
       - "v*"
+  release:
+    types: [published]
+  workflow_dispatch:
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
 
     steps:
       - uses: actions/checkout@v4
