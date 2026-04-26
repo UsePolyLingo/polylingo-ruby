@@ -1,7 +1,14 @@
 name: Publish gem
 
-# Tag push should trigger a run; workflow_dispatch lets you publish from Actions UI
-# if tag events are blocked or missed. release: published covers "Publish release" flow.
+# Uses RubyGems Trusted Publishing (OIDC) — no RUBYGEMS_API_KEY secret, works with account MFA.
+# One-time setup: https://guides.rubygems.org/trusted-publishing/
+# On rubygems.org → your gem → Trusted publishers → Create:
+#   Owner/repo: UsePolyLingo/polylingo-ruby
+#   Workflow file name: publish.yml  (must match this file)
+# If you set a GitHub Environment on that form (e.g. "release"), add:
+#   environment: release
+# to the job below.
+
 on:
   push:
     tags:
@@ -13,11 +20,15 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -25,9 +36,10 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
 
+      - name: Configure RubyGems credentials (Trusted Publishing)
+        uses: rubygems/configure-rubygems-credentials@v1
+
       - name: Build and push
-        env:
-          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
         run: |
           mkdir -p dist
           gem build polylingo.gemspec -o dist/polylingo.gem
