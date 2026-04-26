@@ -2,7 +2,7 @@
 
 Ruby client for the [PolyLingo](https://usepolylingo.com) translation API.
 
-Requires Ruby 2.7+.
+Requires Ruby 2.7+. Runtime dependencies: none (uses only the standard library).
 
 ## Install
 
