@@ -37,7 +37,7 @@ jobs:
           bundler-cache: true
 
       - name: Configure RubyGems credentials (Trusted Publishing)
-        uses: rubygems/configure-rubygems-credentials@v1
+        uses: rubygems/configure-rubygems-credentials@v1.0.0
 
       - name: Build and push
         run: |
